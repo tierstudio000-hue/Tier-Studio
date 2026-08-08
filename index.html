@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier Studio - Twórcy Gier i Aplikacji</title>
+    <!-- Favicon - ikona w karcie przeglądarki -->
+    <link rel="icon" type="image/png" href="image/logo0.png">
+    <!-- FontAwesome dla ikonek społecznościowych -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Pasek nawigacyjny */
+        header {
+            position: fixed;
+            top: 25px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        nav {
+            background-color: rgba(18, 18, 18, 0.9);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 10px 24px 10px 18px;
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        nav a.nav-link {
+            color: #888888;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav a.nav-link:hover {
+            color: #ffffff;
+        }
+
+        /* Ikony społecznościowe w nawigacji */
+        .social-icons-nav {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: 10px;
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            padding-left: 20px;
+        }
+
+        .social-icons-nav a {
+            color: #888888;
+            font-size: 16px;
+            transition: color 0.2s ease, transform 0.2s ease;
+            text-decoration: none;
+        }
+
+        .social-icons-nav a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 140px 20px 60px 20px;
+        }
+
+        /* Sekcja Hero */
+        .hero-section {
+            padding: 60px 0 80px 0;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-subtitle-top {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #888888;
+        }
+
+        .hero-title {
+            font-size: 52px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 40%, #777777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-desc-highlight {
+            font-size: 18px;
+            font-weight: 600;
+            color: #dddddd;
+        }
+
+        .hero-description {
+            font-size: 15px;
+            color: #888888;
+            line-height: 1.7;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffffff, #aaaaaa);
+            color: #000000;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+            background: #ffffff;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-badge-box {
+            width: 100%;
+            max-width: 440px;
+            height: 280px;
+            background: linear-gradient(145deg, #141414, #080808);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(255, 255, 255, 0.03);
+            overflow: hidden;
+        }
+
+        .hero-badge-box img {
+            max-height: 240px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.95));
+        }
+
+        /* SEKCJA: DLACZEGO MY? */
+        .why-us-section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Pozostałe sekcje */
+        section.content-section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background-color: #121212;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-4px);
+            background-color: #181818;
+        }
+
+        /* GALERIA ZDJĘĆ - PROPORCJE 500px na 800px (w pionie) */
+        .card-slider {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 500 / 800;
+            max-height: 450px;
+            background: #0a0a0a;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .slider-images {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none; 
+        }
+
+        .slider-images::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .slider-images img {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #050505;
+            scroll-snap-align: start;
+        }
+
+        /* Przyciski przewijania galerii */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .slider-btn.prev {
+            left: 10px;
+        }
+
+        .slider-btn.next {
+            right: 10px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: #888888;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Kontener na przyciski w karcie - wyrównanie do lewej w jednej linii */
+        .card-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .card-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .card-btn:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        /* Sekcja kontakt i społecznościówki */
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .social-icons-footer {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .social-icons-footer a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 18px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons-footer a:hover {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #666666;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 992px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content {
+                align-items: center;
+            }
+            .hero-description {
+                max-width: 100%;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .social-icons-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 38px;
+            }
+            header {
+                top: 15px;
+                padding: 0 15px;
+            }
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 25px;
+                width: 100%;
+                max-width: 320px;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="nav-logo">
+                <img src="image/logo0.png" alt="Tier Studio Logo">
+            </a>
+            <div class="nav-links">
+                <a href="#o-nas" class="nav-link">O Nas</a>
+                <a href="#nasze-gry" class="nav-link">Nasze Gry</a>
+                <a href="#nasze-gry" class="nav-link">Aktualizacje</a>
+                <a href="#nasze-gry" class="nav-link">Polityka Prywatności</a>
+                <a href="#kontakt" class="nav-link">Kontakt</a>
+            </div>
+            <!-- Ikony społecznościowe w prawej części paska nawigacji -->
+            <div class="social-icons-nav">
+                <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                <a href="https://www.instagram.com/tierstudio_pl/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section" id="o-nas">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-subtitle-top">Witaj w</span>
+                    <h1 class="hero-title">TIER STUDIO</h1>
+                    <p class="hero-desc-highlight">Tworzymy gry i aplikacje z pasją.</p>
+                    <p class="hero-description">Tworzymy nowe, unikalne gry i aplikacje. Dbamy o każdy detal, jakość i doświadczenie użytkownika. To dopiero początek naszej drogi.</p>
+                    <div class="hero-buttons">
+                        <a href="#nasze-gry" class="btn-primary">Nasze Gry &rarr;</a>
+                        <a href="#o-nas" class="btn-secondary">O Nas</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-badge-box">
+                        <img src="image/logo0.png" alt="Tier Studio Logo Duże">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCJA: DLACZEGO MY? -->
+        <section class="why-us-section">
+            <h2 class="section-title">Dlaczego my?</h2>
+            <div class="cards-grid">
+                <div class="card" style="text-align: center; align-items: center;">
+                    <div style="font-size: 24px; color: #ffffff; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"><i class="fas fa-code"></i></div>
+                    <h3>Tworzymy z pasji</h3>
+                    <p>Każdy projekt powstaje z miłości do gier i chęci dostarczania niezapomnianych wrażeń graczom.</p>
+                </div>
+                <div class="card" style="text-align: center; align-items: center;">
+                    <div style="font-size: 24px; color: #ffffff; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"><i class="fas fa-layer-group"></i></div>
+                    <h3>Stale rozwijamy projekty</h3>
+                    <p>Nie zatrzymujemy się po premierze. Regularnie wprowadzamy aktualizacje, poprawki i nowości.</p>
+                </div>
+                <div class="card" style="text-align: center; align-items: center;">
+                    <div style="font-size: 24px; color: #ffffff; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Dbamy o jakość</h3>
+                    <p>Skupiamy się na czystym kodzie, świetnej optymalizacji i dopracowanym doświadczeniu użytkownika.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEKCJA: NASZE GRY I APLIKACJE -->
+        <section class="content-section" id="nasze-gry">
+            <h2 class="section-title">Nasze Gry i Aplikacje</h2>
+            <div class="cards-grid">
+                <!-- Karta gry OneMore z pionowym sliderem 500x800 -->
+                <div class="card">
+                    <div>
+                        <div class="card-slider">
+                            <button class="slider-btn prev" onclick="scrollSlider(this, -1)">&#10094;</button>
+                            <div class="slider-images">
+                                <img src="image/onemore.png" alt="OneMore Zdjęcie 1">
+                                <img src="image/1.png" alt="OneMore Zdjęcie 1">
+                                <img src="image/2.png" alt="OneMore Zdjęcie 1">
+                                <img src="image/3.png" alt="OneMore Zdjęcie 1">
+                                <img src="image/4.png" alt="OneMore Zdjęcie 1">
+                                <img src="image/5.png" alt="OneMore Zdjęcie 1">
+                                <img src="image/1.png" alt="OneMore Zdjęcie 1">
+                            </div>
+                            <button class="slider-btn next" onclick="scrollSlider(this, 1)">&#10095;</button>
+                        </div>
+                        <h3>OneMore Nigdy przenigdy</h3>
+                        <p>Ekscytująca gra imprezowa, która rozkręci każde spotkanie ze znajomymi.</p>
+                    </div>
+                    <!-- Przyciski w jednej linii po lewej stronie -->
+                    <div class="card-actions">
+                        <a href="polityka-onemore.html" class="card-btn">Polityka</a>
+                        <a href="aktualizacje-onemore.html" class="card-btn">Aktualizacja</a>
+                    </div>
+                </div>
+                
+                <!-- Druga karta (pusta / wkrótce) -->
+                <div class="card">
+                    <div>
+                        <div class="card-slider" style="display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px;">
+                            Wkrótce
+                        </div>
+                        <h3>Kolejna Gra</h3>
+                        <p>Pracujemy nad nowymi, ekscytującymi projektami. Śledź nasze media, aby dowiedzieć się więcej.</p>
+                    </div>
+                    <!-- Przyciski w jednej linii po lewej stronie również dla drugiej karty -->
+                    <div class="card-actions">
+                        <a href="#" class="card-btn">Polityka</a>
+                        <a href="#" class="card-btn">Aktualizacja</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section" id="kontakt">
+            <h2 class="section-title">Kontakt</h2>
+            <div class="contact-content">
+                <p style="text-align: center; color: #888888; max-width: 650px; margin: 0 auto;">Skontaktuj się z nami pod adresem e-mail: <strong style="color:#ffffff;">tierstudio-kontakt@wp.pl</strong></p>
+                <!-- Duże, widoczne ikonki społecznościowe w sekcji kontaktu -->
+                <div class="social-icons-footer">
+                    <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://www.instagram.com/tierstudio_pl/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Tier Studio. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+    <!-- Skrypt obsługujący strzałki przewijania zdjęć -->
+    <script>
+        function scrollSlider(button, direction) {
+            const sliderImages = button.parentElement.querySelector('.slider-images');
+            const scrollAmount = sliderImages.clientWidth;
+            sliderImages.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
