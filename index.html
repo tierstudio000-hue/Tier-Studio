@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tier Studio - Twórcy Gier i Aplikacji</title>
-    <!-- Favicon - ikona w karcie przeglądarki -->
     <link rel="icon" type="image/png" href="image/logo0.png">
-    <!-- FontAwesome dla ikonek społecznościowych -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -37,7 +35,7 @@
         }
 
         nav {
-            background-color: rgba(18, 18, 18, 0.9);
+            background-color: rgba(18, 18, 18, 0.95);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -45,8 +43,12 @@
             padding: 10px 24px 10px 18px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 32px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            width: 100%;
+            max-width: 1100px;
+            transition: all 0.3s ease;
         }
 
         .nav-logo {
@@ -77,6 +79,17 @@
 
         nav a.nav-link:hover {
             color: #ffffff;
+        }
+
+        /* Ikona Menu Mobilnego (Hamburger) */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 5px;
         }
 
         /* Ikony społecznościowe w nawigacji */
@@ -174,6 +187,7 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
@@ -196,6 +210,7 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.3s ease;
         }
@@ -235,14 +250,8 @@
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.95));
         }
 
-        /* SEKCJA: DLACZEGO MY? */
-        .why-us-section {
-            padding: 80px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Pozostałe sekcje */
-        section.content-section {
+        /* SEKCJE */
+        .why-us-section, section.content-section {
             padding: 80px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -277,7 +286,7 @@
             background-color: #181818;
         }
 
-        /* GALERIA ZDJĘĆ - PROPORCJE 500px na 800px (w pionie) */
+        /* GALERIA ZDJĘĆ */
         .card-slider {
             position: relative;
             width: 100%;
@@ -313,7 +322,6 @@
             scroll-snap-align: start;
         }
 
-        /* Przyciski przewijania galerii */
         .slider-btn {
             position: absolute;
             top: 50%;
@@ -337,13 +345,8 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
-        .slider-btn.prev {
-            left: 10px;
-        }
-
-        .slider-btn.next {
-            right: 10px;
-        }
+        .slider-btn.prev { left: 10px; }
+        .slider-btn.next { right: 10px; }
 
         .card h3 {
             font-size: 18px;
@@ -357,12 +360,12 @@
             margin-bottom: 20px;
         }
 
-        /* Kontener na przyciski w karcie - wyrównanie do lewej w jednej linii */
         .card-actions {
             display: flex;
             gap: 10px;
             justify-content: flex-start;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .card-btn {
@@ -377,6 +380,7 @@
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.2s ease;
+            flex: 1;
         }
 
         .card-btn:hover {
@@ -385,7 +389,7 @@
             border-color: #ffffff;
         }
 
-        /* Sekcja kontakt i społecznościówki */
+        /* Kontakt i Stopka */
         .contact-content {
             display: flex;
             flex-direction: column;
@@ -423,12 +427,13 @@
 
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 40px 20px;
             color: #666666;
             font-size: 13px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        /* RESPONSYWNOŚĆ (MEDIA QUERIES) */
         @media (max-width: 992px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -448,25 +453,96 @@
             }
         }
 
-        @media (max-width: 600px) {
-            .hero-title {
-                font-size: 38px;
-            }
+        @media (max-width: 768px) {
             header {
                 top: 15px;
                 padding: 0 15px;
             }
+
             nav {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px 25px;
-                width: 100%;
-                max-width: 320px;
+                border-radius: 20px;
+                padding: 12px 20px;
+                flex-wrap: wrap;
             }
+
+            .mobile-toggle {
+                display: block;
+            }
+
             .nav-links {
+                display: none;
                 flex-direction: column;
+                width: 100%;
+                gap: 16px;
+                padding-top: 15px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 10px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            main {
+                padding-top: 110px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-desc-highlight {
+                font-size: 16px;
+            }
+
+            .hero-badge-box {
+                height: 220px;
+            }
+
+            .hero-badge-box img {
+                max-height: 180px;
+            }
+
+            .why-us-section, section.content-section {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 26px;
+                margin-bottom: 30px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card-slider {
+                max-height: 360px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-icons-footer {
                 gap: 12px;
-                text-align: center;
+            }
+
+            .social-icons-footer a {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
             }
         }
     </style>
@@ -478,14 +554,19 @@
             <a href="#" class="nav-logo">
                 <img src="image/logo0.png" alt="Tier Studio Logo">
             </a>
-            <div class="nav-links">
+
+            <button class="mobile-toggle" id="menuToggle" aria-label="Otwórz menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="nav-links" id="navLinks">
                 <a href="#o-nas" class="nav-link">O Nas</a>
                 <a href="#nasze-gry" class="nav-link">Nasze Gry</a>
                 <a href="#nasze-gry" class="nav-link">Aktualizacje</a>
                 <a href="#nasze-gry" class="nav-link">Polityka Prywatności</a>
                 <a href="#kontakt" class="nav-link">Kontakt</a>
             </div>
-            <!-- Ikony społecznościowe w prawej części paska nawigacji -->
+
             <div class="social-icons-nav">
                 <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
                 <a href="https://www.instagram.com/tierstudio_pl/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -516,7 +597,6 @@
             </div>
         </section>
 
-        <!-- SEKCJA: DLACZEGO MY? -->
         <section class="why-us-section">
             <h2 class="section-title">Dlaczego my?</h2>
             <div class="cards-grid">
@@ -538,37 +618,33 @@
             </div>
         </section>
 
-        <!-- SEKCJA: NASZE GRY I APLIKACJE -->
         <section class="content-section" id="nasze-gry">
             <h2 class="section-title">Nasze Gry i Aplikacje</h2>
             <div class="cards-grid">
-                <!-- Karta gry OneMore z pionowym sliderem 500x800 -->
                 <div class="card">
                     <div>
                         <div class="card-slider">
                             <button class="slider-btn prev" onclick="scrollSlider(this, -1)">&#10094;</button>
                             <div class="slider-images">
                                 <img src="image/onemore.png" alt="OneMore Zdjęcie 1">
-                                <img src="image/1.png" alt="OneMore Zdjęcie 1">
-                                <img src="image/2.png" alt="OneMore Zdjęcie 1">
-                                <img src="image/3.png" alt="OneMore Zdjęcie 1">
-                                <img src="image/4.png" alt="OneMore Zdjęcie 1">
-                                <img src="image/5.png" alt="OneMore Zdjęcie 1">
-                                <img src="image/1.png" alt="OneMore Zdjęcie 1">
+                                <img src="image/1.png" alt="OneMore Zdjęcie 2">
+                                <img src="image/2.png" alt="OneMore Zdjęcie 3">
+                                <img src="image/3.png" alt="OneMore Zdjęcie 4">
+                                <img src="image/4.png" alt="OneMore Zdjęcie 5">
+                                <img src="image/5.png" alt="OneMore Zdjęcie 6">
+                                <img src="image/1.png" alt="OneMore Zdjęcie 7">
                             </div>
                             <button class="slider-btn next" onclick="scrollSlider(this, 1)">&#10095;</button>
                         </div>
                         <h3>OneMore Nigdy przenigdy</h3>
                         <p>Ekscytująca gra imprezowa, która rozkręci każde spotkanie ze znajomymi.</p>
                     </div>
-                    <!-- Przyciski w jednej linii po lewej stronie -->
                     <div class="card-actions">
                         <a href="polityka-onemore.html" class="card-btn">Polityka</a>
                         <a href="aktualizacje-onemore.html" class="card-btn">Aktualizacja</a>
                     </div>
                 </div>
                 
-                <!-- Druga karta (pusta / wkrótce) -->
                 <div class="card">
                     <div>
                         <div class="card-slider" style="display: flex; align-items: center; justify-content: center; color: #444; font-size: 13px;">
@@ -577,7 +653,6 @@
                         <h3>Kolejna Gra</h3>
                         <p>Pracujemy nad nowymi, ekscytującymi projektami. Śledź nasze media, aby dowiedzieć się więcej.</p>
                     </div>
-                    <!-- Przyciski w jednej linii po lewej stronie również dla drugiej karty -->
                     <div class="card-actions">
                         <a href="#" class="card-btn">Polityka</a>
                         <a href="#" class="card-btn">Aktualizacja</a>
@@ -590,7 +665,6 @@
             <h2 class="section-title">Kontakt</h2>
             <div class="contact-content">
                 <p style="text-align: center; color: #888888; max-width: 650px; margin: 0 auto;">Skontaktuj się z nami pod adresem e-mail: <strong style="color:#ffffff;">tierstudio-kontakt@wp.pl</strong></p>
-                <!-- Duże, widoczne ikonki społecznościowe w sekcji kontaktu -->
                 <div class="social-icons-footer">
                     <a href="https://discord.com" target="_blank" title="Discord"><i class="fab fa-discord"></i></a>
                     <a href="https://www.instagram.com/tierstudio_pl/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -605,13 +679,39 @@
         <p>&copy; 2026 Tier Studio. Wszelkie prawa zastrzeżone.</p>
     </footer>
 
-    <!-- Skrypt obsługujący strzałki przewijania zdjęć -->
     <script>
+        // Przewijanie galerii zdjęć
         function scrollSlider(button, direction) {
             const sliderImages = button.parentElement.querySelector('.slider-images');
             const scrollAmount = sliderImages.clientWidth;
             sliderImages.scrollBy({ left: scrollAmount * direction, behavior: 'smooth' });
         }
+
+        // Obsługa menu mobilnego
+        const menuToggle = id = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Zamknięcie menu po kliknięciu w dowolny link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
     </script>
 </body>
 </html>
